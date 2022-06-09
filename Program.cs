@@ -15,8 +15,10 @@ namespace ConsoleEntryValidation
             Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&dec"));
 
             Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
 
             Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));
         }
 
         /// <summary>
@@ -56,6 +58,17 @@ namespace ConsoleEntryValidation
                 cki = Console.ReadKey(true);
                 keyInput = cki.KeyChar.ToString();
 
+                if(cki.Key == ConsoleKey.Backspace)
+                {
+                    //do stuff here
+                    if (consoleInput != "")
+                    {
+                        //remove last charcater in console input
+                        //reprotin console.write(keyInput);  ?? how do you do this???
+                    }
+                }
+
+                //need to keep backspace from reaching this as it add's \b to it, which is bunk.
                 if(keyInput != null)
                 {
                     int position = validateString.IndexOf(keyInput);
@@ -71,5 +84,3 @@ namespace ConsoleEntryValidation
         }
     }
 }
-
-//look at consolekey for the keys!  

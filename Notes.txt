@@ -1,0 +1,23 @@
+﻿clear line of console
+https://stackoverflow.com/questions/8946808/can-console-clear-be-used-to-only-clear-a-line-instead-of-whole-console
+
+public static void ClearLastLine()
+{
+    Console.SetCursorPosition(0, Console.CursorTop - 1);
+    Console.Write(new string(' ', Console.BufferWidth));
+    Console.SetCursorPosition(0, Console.CursorTop - 1);
+}
+add this to method above:  if (Console.CursorTop > 0) Console.SetCursorPosition(0, Console.CursorTop - 1); 
+
+Console.CursorTop = 0;
+Console.CursorLeft = 0;
+Console.Write("Whatever...".PadRight(Console.BufferWidth));
+
+might need:  (BufferWidth -1)
+
+here's another version:  
+https://stackoverflow.com/questions/5027301/c-sharp-clear-console-last-item-and-replace-new-console-animation
+string s = "\r";
+s += new string(' ', Console.CursorLeft);
+s += "\r";
+Console.Write(s);
