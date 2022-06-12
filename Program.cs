@@ -67,7 +67,7 @@ namespace ConsoleEntryValidation
                         //clear console LINE
                         ClearLastLine();
                         //write new variable console.write(consoleInput);
-                        Console.Write(keyInput);
+                        Console.Write(consoleInput);
                     }
                 }              
                 //need to keep backspace from reaching this as it add's \b to it, which is bunk.
@@ -88,9 +88,10 @@ namespace ConsoleEntryValidation
 
         internal static void ClearLastLine()
         {
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            int cursorTopPos = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.SetCursorPosition(0, Console.CursorTop);
         }
     }
 }
