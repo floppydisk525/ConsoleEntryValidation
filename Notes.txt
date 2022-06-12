@@ -1,4 +1,4 @@
-﻿clear line of console
+﻿CLEAR LINE OF CONSOLE EXAMPLES
 https://stackoverflow.com/questions/8946808/can-console-clear-be-used-to-only-clear-a-line-instead-of-whole-console
 
 public static void ClearLastLine()
@@ -21,3 +21,8 @@ string s = "\r";
 s += new string(' ', Console.CursorLeft);
 s += "\r";
 Console.Write(s);
+
+
+REMOVE LAST CHARACTER OF STRING
+examples:
+https://stackoverflow.com/questions/3573284/trim-last-character-from-a-string

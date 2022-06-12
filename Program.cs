@@ -12,7 +12,7 @@ namespace ConsoleEntryValidation
             Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
 
             Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
-            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&dec"));
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&period"));
 
             Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
             Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
@@ -32,7 +32,7 @@ namespace ConsoleEntryValidation
                 case "num":
                     validateString = "0123456789";
                     break;
-                case "num&dec":
+                case "num&period":
                     validateString = "0123456789.";
                     break;
                 case "alphaOnlyLowerCase":
@@ -61,18 +61,21 @@ namespace ConsoleEntryValidation
                 if(cki.Key == ConsoleKey.Backspace)
                 {
                     //do stuff here
-                    if (consoleInput != "")
+                    if (consoleInput != "")     
                     {
-                        //remove last charcater in console input
-                        //reprotin console.write(keyInput);  ?? how do you do this???
+                        consoleInput = consoleInput.Remove(consoleInput.Length - 1, 1);
+                        //clear console LINE
+                        ClearLastLine();
+                        //write new variable console.write(consoleInput);
+                        Console.Write(keyInput);
                     }
-                }
-
+                }              
                 //need to keep backspace from reaching this as it add's \b to it, which is bunk.
-                if(keyInput != null)
+                else if(keyInput != null)
                 {
                     int position = validateString.IndexOf(keyInput);
-                    if (position != -1) 
+                    int posBackSlash = keyInput.IndexOf("'\'");
+                    if (position != -1 && posBackSlash == -1) 
                     { 
                         consoleInput += keyInput;
                         Console.Write(keyInput);
@@ -81,6 +84,13 @@ namespace ConsoleEntryValidation
             } while (cki.Key != ConsoleKey.Enter);
 
             return consoleInput;
+        }
+
+        internal static void ClearLastLine()
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.Write(new string(' ', Console.BufferWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
         }
     }
 }
