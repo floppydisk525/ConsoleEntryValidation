@@ -26,3 +26,7 @@ Console.Write(s);
 REMOVE LAST CHARACTER OF STRING
 examples:
 https://stackoverflow.com/questions/3573284/trim-last-character-from-a-string
+
+REGEX EXAMPLE:
+https://stackoverflow.com/questions/4503542/check-for-special-characters-in-a-string
+	This example has teh screen shot in RefMat folder.  
