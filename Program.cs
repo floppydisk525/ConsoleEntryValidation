@@ -6,7 +6,13 @@ namespace ConsoleEntryValidation
     {
         static void Main(string[] args)
         {
-
+            PrintChars("Hello");
+            Console.WriteLine();
+            PrintChars(@"\0");
+            Console.WriteLine();
+            PrintChars(@"\t");
+            Console.WriteLine();
+            PrintChars(@"\");
 
             Console.WriteLine("Enter Only Digits followed by ENTER:");            
             Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
@@ -57,8 +63,9 @@ namespace ConsoleEntryValidation
             {
                 cki = Console.ReadKey(true);
                 keyInput = cki.KeyChar.ToString();
+                string keyInputLiteral = @cki.KeyChar.@ToString();
 
-                if(cki.Key == ConsoleKey.Backspace)
+                if (cki.Key == ConsoleKey.Backspace)
                 {
                     //do stuff here
                     if (consoleInput != "")     
@@ -73,13 +80,20 @@ namespace ConsoleEntryValidation
                 //need to keep backspace from reaching this as it add's \b to it, which is bunk.
                 else if(keyInput != null)
                 {
-                    int position = validateString.IndexOf(keyInput);
-                    int posBackSlash = keyInput.IndexOf("'\'");
+                    int lengthKeyInput = @keyInput.Length;
+                    int lengthKeyInputLiteral = @keyInputLiteral.Length;
+                    string cleaned = keyInput.Trim();
+                    int position = validateString.IndexOf(@keyInput);
+                    int positiontest = keyInput.IndexOf(validateString);
+                    string backslash = @"\";                    
+                    int posBackSlash = @backslash.IndexOf(@keyInput);
+                    int stringcompare = string.Compare(keyInput, backslash);
+                    //int posBackSlash = @keyInput.IndexOf(@backslash);
                     if (position != -1 && posBackSlash == -1) 
                     { 
                         consoleInput += keyInput;
                         Console.Write(keyInput);
-                    }                    
+                    }
                 }
             } while (cki.Key != ConsoleKey.Enter);
 
@@ -92,6 +106,16 @@ namespace ConsoleEntryValidation
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, Console.CursorTop);
+        }
+
+        static void PrintChars(string s)
+        {
+            Console.WriteLine($"\"{s}\".Length = {s.Length}");
+            for (int i = 0; i < s.Length; i++)
+            {
+                Console.WriteLine($"s[{i}] = '{s[i]}' ('\\u{(int)s[i]:x4}')");
+            }
+            Console.WriteLine();
         }
     }
 }
