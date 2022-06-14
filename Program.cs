@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Text.RegularExpressions;
+
 namespace ConsoleEntryValidation
 {
     internal class Program
@@ -64,6 +66,13 @@ namespace ConsoleEntryValidation
                 cki = Console.ReadKey(true);
                 keyInput = cki.KeyChar.ToString();
                 string keyInputLiteral = @cki.KeyChar.@ToString();
+
+                //try regex stuff here.
+                string pattern = @"^[a-zA-Z0-9\.?]*$";
+                //pattern += @"\.?";
+                var regexItem = new Regex(pattern);
+                bool findMatch = false;
+                if (regexItem.IsMatch(keyInputLiteral)) { findMatch = true; }
 
                 if (cki.Key == ConsoleKey.Backspace)
                 {

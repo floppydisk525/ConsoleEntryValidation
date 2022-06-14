@@ -29,4 +29,12 @@ https://stackoverflow.com/questions/3573284/trim-last-character-from-a-string
 
 REGEX EXAMPLE:
 https://stackoverflow.com/questions/4503542/check-for-special-characters-in-a-string
-	This example has teh screen shot in RefMat folder.  
+	This example has the screen shot in RefMat folder.  
+    var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+    if(regexItem.IsMatch(YOUR_STRING)){..}
+
+
+
+\.?	Match zero or one decimal point symbol.
+^	Start at the beginning of the string.
+$	Match the end of the string.
