@@ -8,25 +8,54 @@ namespace ConsoleEntryValidation
     {
         static void Main(string[] args)
         {
-            PrintChars("Hello");
-            Console.WriteLine();
-            PrintChars(@"\0");
-            Console.WriteLine();
-            PrintChars(@"\t");
-            Console.WriteLine();
-            PrintChars(@"\");
+            string pattern = @"^[a-zA-Z0-9\.?]*$";
+            //pattern += @"\.?";
+            var regexItem = new Regex(pattern);
+            bool findMatch = false;
+            string teststring = "\0";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
 
-            Console.WriteLine("Enter Only Digits followed by ENTER:");            
-            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
+            findMatch = false;
+            teststring = "4.3";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
 
-            Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
-            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&period"));
+            findMatch = false;
+            teststring = "4.33.4";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
 
-            Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
-            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
 
-            Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
-            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));
+
+            //PrintChars("Hello");
+            //Console.WriteLine();
+            //PrintChars(@"\0");
+            //Console.WriteLine();
+            //PrintChars(@"\t");
+            //Console.WriteLine();
+            //PrintChars(@"\");
+
+            //Console.WriteLine("Enter Only Digits followed by ENTER:");            
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
+
+            //Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&period"));
+
+            //Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
+
+            //Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));
         }
 
         /// <summary>
@@ -72,7 +101,11 @@ namespace ConsoleEntryValidation
                 //pattern += @"\.?";
                 var regexItem = new Regex(pattern);
                 bool findMatch = false;
-                if (regexItem.IsMatch(keyInputLiteral)) { findMatch = true; }
+                if (regexItem.IsMatch(keyInputLiteral)) 
+                { 
+                    findMatch = true;                     
+                }
+                Console.WriteLine("findMatch character is: {0}", findMatch);
 
                 if (cki.Key == ConsoleKey.Backspace)
                 {
@@ -98,6 +131,15 @@ namespace ConsoleEntryValidation
                     int posBackSlash = @backslash.IndexOf(@keyInput);
                     int stringcompare = string.Compare(keyInput, backslash);
                     //int posBackSlash = @keyInput.IndexOf(@backslash);
+
+                    bool findMatchConsoleInput = false;
+                    if (regexItem.IsMatch(keyInputLiteral))
+                    {
+                        findMatchConsoleInput = true;
+                    }
+                    Console.WriteLine("findMatch character is: {0}", findMatchConsoleInput);
+
+
                     if (position != -1 && posBackSlash == -1) 
                     { 
                         consoleInput += keyInput;
