@@ -9,13 +9,13 @@ namespace ConsoleEntryValidation
     {
         static void Main(string[] args)
         {
-            string pattern = @"^[a-zA-Z0-9]*(\d*\.?)$";
+            string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
             Console.WriteLine("The Regex Pattern is: {0}\n", pattern);
             
             //pattern += @"\.?";
             var regexItem = new Regex(pattern);
             bool findMatch = false;
-            string teststring = "\0";
+            string teststring = @"\0";
             if (regexItem.IsMatch(teststring))
             {
                 findMatch = true;
@@ -38,7 +38,6 @@ namespace ConsoleEntryValidation
             }
             Console.WriteLine("3. The string {0} isMatch is: {1}", teststring, findMatch);
 
-
             string pattern2 = @"^[a-zA-Z0-9]*\.?$"; // @"^\.?$";
             findMatch = false;
             //var regexItem = new Regex(pattern2);
@@ -48,8 +47,7 @@ namespace ConsoleEntryValidation
                 findMatch = true;
             }
             Console.WriteLine("4. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            
+                        
             findMatch = false;
             teststring = "4.3";
             if (regexItem.IsMatch(teststring))
@@ -58,6 +56,21 @@ namespace ConsoleEntryValidation
             }
             Console.WriteLine("5. The string {0} isMatch is: {1}", teststring, findMatch);
 
+            findMatch = false;
+            teststring = "AAaa4.3";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("6. The string {0} isMatch is: {1}", teststring, findMatch);
+
+            findMatch = false;
+            teststring = "AA.aa4.3";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("7. The string {0} isMatch is: {1}", teststring, findMatch);
 
             Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
             Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
