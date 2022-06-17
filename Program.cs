@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace ConsoleEntryValidation
 {
@@ -8,7 +9,9 @@ namespace ConsoleEntryValidation
     {
         static void Main(string[] args)
         {
-            string pattern = @"^[a-zA-Z0-9\.?]*$";
+            string pattern = @"^[a-zA-Z0-9]*(\d*\.?)$";
+            Console.WriteLine("The Regex Pattern is: {0}\n", pattern);
+            
             //pattern += @"\.?";
             var regexItem = new Regex(pattern);
             bool findMatch = false;
@@ -17,25 +20,63 @@ namespace ConsoleEntryValidation
             {
                 findMatch = true;
             }
-            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
+            Console.WriteLine("1. The string {0} isMatch is: {1}", teststring, findMatch);
 
+            findMatch = false;
+            teststring = "43";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("2. The string {0} isMatch is: {1}", teststring, findMatch);
+
+            findMatch = false;
+            teststring = "AAAaaa111000";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("3. The string {0} isMatch is: {1}", teststring, findMatch);
+
+
+            string pattern2 = @"^[a-zA-Z0-9]*\.?$"; // @"^\.?$";
+            findMatch = false;
+            //var regexItem = new Regex(pattern2);
+            teststring = "4.33.4";
+            if (regexItem.IsMatch(teststring))
+            {
+                findMatch = true;
+            }
+            Console.WriteLine("4. The string {0} isMatch is: {1}", teststring, findMatch);
+
+            
             findMatch = false;
             teststring = "4.3";
             if (regexItem.IsMatch(teststring))
             {
                 findMatch = true;
             }
-            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
-
-            findMatch = false;
-            teststring = "4.33.4";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("The string {0} isMatch is: {1}", teststring, findMatch);
+            Console.WriteLine("5. The string {0} isMatch is: {1}", teststring, findMatch);
 
 
+            Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
+            Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
+            NumberFormatInfo nfi = NumberFormatInfo.CurrentInfo;
+            //pattern = @""
+            pattern = @"^\s*[";
+            // Get the positive and negative sign symbols.
+            pattern += Regex.Escape(nfi.PositiveSign + nfi.NegativeSign) + @"]?\s?";
+            // Get the currency symbol.
+            pattern += Regex.Escape(nfi.CurrencySymbol) + @"?\s?";
+            // Add integral digits to the pattern.
+            pattern += @"(\d*";
+            // Add the decimal separator.
+            pattern += Regex.Escape(nfi.CurrencyDecimalSeparator) + "?";
+            // Add the fractional digits.
+            pattern += @"\d{";
+            // Determine the number of fractional digits in currency values.
+            pattern += nfi.CurrencyDecimalDigits.ToString() + "}?){1}$";
+            Console.WriteLine(pattern);
 
             //PrintChars("Hello");
             //Console.WriteLine();
