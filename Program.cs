@@ -38,7 +38,7 @@ namespace ConsoleEntryValidation
             }
             Console.WriteLine("3. The string {0} isMatch is: {1}", teststring, findMatch);
 
-            string pattern2 = @"^[a-zA-Z0-9]*\.?$"; // @"^\.?$";
+            //string pattern2 = @"^[a-zA-Z0-9]*\.?$"; // @"^\.?$";
             findMatch = false;
             //var regexItem = new Regex(pattern2);
             teststring = "4.33.4";
