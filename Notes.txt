@@ -1,0 +1,42 @@
+﻿CLEAR LINE OF CONSOLE EXAMPLES
+https://stackoverflow.com/questions/8946808/can-console-clear-be-used-to-only-clear-a-line-instead-of-whole-console
+
+public static void ClearLastLine()
+{
+    Console.SetCursorPosition(0, Console.CursorTop - 1);
+    Console.Write(new string(' ', Console.BufferWidth));
+    Console.SetCursorPosition(0, Console.CursorTop - 1);
+}
+add this to method above:  if (Console.CursorTop > 0) Console.SetCursorPosition(0, Console.CursorTop - 1); 
+
+Console.CursorTop = 0;
+Console.CursorLeft = 0;
+Console.Write("Whatever...".PadRight(Console.BufferWidth));
+
+might need:  (BufferWidth -1)
+
+here's another version:  
+https://stackoverflow.com/questions/5027301/c-sharp-clear-console-last-item-and-replace-new-console-animation
+string s = "\r";
+s += new string(' ', Console.CursorLeft);
+s += "\r";
+Console.Write(s);
+
+
+REMOVE LAST CHARACTER OF STRING
+examples:
+https://stackoverflow.com/questions/3573284/trim-last-character-from-a-string
+
+REGEX EXAMPLE:
+https://stackoverflow.com/questions/4503542/check-for-special-characters-in-a-string
+	This example has the screen shot in RefMat folder.  
+    var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+    if(regexItem.IsMatch(YOUR_STRING)){..}
+GOOD REGEX EXAMPLE
+https://stackoverflow.com/questions/12117024/decimal-number-regular-expression-where-digit-after-decimal-is-optional
+
+
+
+\.?	Match zero or one decimal point symbol.
+^	Start at the beginning of the string.
+$	Match the end of the string.
