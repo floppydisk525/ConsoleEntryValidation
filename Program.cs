@@ -30,24 +30,7 @@ namespace ConsoleEntryValidation
             pattern = @"^[0-9]*(\d*\.?\d)$";
             regexMatch(list, pattern);
 
-            Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
-            Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
-            NumberFormatInfo nfi = NumberFormatInfo.CurrentInfo;
-            //pattern = @""
-            pattern = @"^\s*[";
-            // Get the positive and negative sign symbols.
-            pattern += Regex.Escape(nfi.PositiveSign + nfi.NegativeSign) + @"]?\s?";
-            // Get the currency symbol.
-            pattern += Regex.Escape(nfi.CurrencySymbol) + @"?\s?";
-            // Add integral digits to the pattern.
-            pattern += @"(\d*";
-            // Add the decimal separator.
-            pattern += Regex.Escape(nfi.CurrencyDecimalSeparator) + "?";
-            // Add the fractional digits.
-            pattern += @"\d{";
-            // Determine the number of fractional digits in currency values.
-            pattern += nfi.CurrencyDecimalDigits.ToString() + "}?){1}$";
-            Console.WriteLine(pattern);
+            MSRegexExample();
 
             //PrintChars("Hello");
             //Console.WriteLine();
@@ -67,31 +50,28 @@ namespace ConsoleEntryValidation
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
 
             //Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));
-
-            void regexMatch(List<string> listOfStrings, string patternToTest)
-            {
-                var regexItem = new Regex(patternToTest);
-                Console.WriteLine("\n\nThe Regex Pattern is: {0}\n", patternToTest);
-
-                bool findMatch = false;
-                int index = 0;
-
-                foreach (string item in listOfStrings)
-                {
-                    index++;
-                    findMatch = false;
-                    if (regexItem.IsMatch(item))
-                    {
-                        findMatch = true;
-                    }
-                    Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
-                }
-            }
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));            
         }
 
-        
+        static void regexMatch(List<string> listOfStrings, string patternToTest)
+        {
+            var regexItem = new Regex(patternToTest);
+            Console.WriteLine("\n\nThe Regex Pattern is: {0}\n", patternToTest);
 
+            bool findMatch = false;
+            int index = 0;
+
+            foreach (string item in listOfStrings)
+            {
+                index++;
+                findMatch = false;
+                if (regexItem.IsMatch(item))
+                {
+                    findMatch = true;
+                }
+                Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
+            }
+        }
 
         /// <summary>
         /// Method <c>KeyValidate</c> allows keystrokes based on a pre-set group/range.
@@ -202,6 +182,29 @@ namespace ConsoleEntryValidation
                 Console.WriteLine($"s[{i}] = '{s[i]}' ('\\u{(int)s[i]:x4}')");
             }
             Console.WriteLine();
+        }
+
+        static void MSRegexExample()
+        {
+            Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
+            Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
+            NumberFormatInfo nfi = NumberFormatInfo.CurrentInfo;
+            
+            //pattern = @""
+            string pattern = @"^\s*[";
+            // Get the positive and negative sign symbols.
+            pattern += Regex.Escape(nfi.PositiveSign + nfi.NegativeSign) + @"]?\s?";
+            // Get the currency symbol.
+            pattern += Regex.Escape(nfi.CurrencySymbol) + @"?\s?";
+            // Add integral digits to the pattern.
+            pattern += @"(\d*";
+            // Add the decimal separator.
+            pattern += Regex.Escape(nfi.CurrencyDecimalSeparator) + "?";
+            // Add the fractional digits.
+            pattern += @"\d{";
+            // Determine the number of fractional digits in currency values.
+            pattern += nfi.CurrencyDecimalDigits.ToString() + "}?){1}$";
+            Console.WriteLine(pattern);
         }
     }
 }
