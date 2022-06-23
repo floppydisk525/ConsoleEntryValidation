@@ -54,7 +54,7 @@ namespace ConsoleEntryValidation
         }
 
         /// <summary>
-        /// regexMatch takes a list of strings and a test pattern and uses
+        /// regexMatch takes a list of strings and a string test pattern and uses
         /// Regex to check if the strings in listOfStrings match the pattern.  
         /// 
         /// Also, it prints out the strings and true/false if a match.
@@ -85,7 +85,7 @@ namespace ConsoleEntryValidation
         /// Method <c>KeyValidate</c> allows keystrokes based on a pre-set group/range.
         /// It does not limit number of keystroke entries and terminates with ENTER. 
         /// </summary>
-        static string KeyValidate(string validateString )
+        static string KeyValidate(string validateString)
         {            
             switch (validateString)
             {
