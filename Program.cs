@@ -53,6 +53,14 @@ namespace ConsoleEntryValidation
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));            
         }
 
+        /// <summary>
+        /// regexMatch takes a list of strings and a test pattern and uses
+        /// Regex to check if the strings in listOfStrings match the pattern.  
+        /// 
+        /// Also, it prints out the strings and true/false if a match.
+        /// </summary>
+        /// <param name="listOfStrings"></param>
+        /// <param name="patternToTest"></param>
         static void regexMatch(List<string> listOfStrings, string patternToTest)
         {
             var regexItem = new Regex(patternToTest);
