@@ -30,7 +30,7 @@ namespace ConsoleEntryValidation
             pattern = @"^[0-9]*(\d*\.?\d)$";
             regexMatch(list, pattern);
 
-            MSRegexExample();
+            //MSRegexExample();
 
             //PrintChars("Hello");
             //Console.WriteLine();
@@ -184,6 +184,10 @@ namespace ConsoleEntryValidation
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Method NOT used in code, but left for reference.
+        /// Used to show a Microsoft example from docs.microsoft.com...  etc.
+        /// </summary>
         static void MSRegexExample()
         {
             Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
