@@ -7,7 +7,7 @@ Console appliction that uses REGEX to read string input and determine if it meet
 The program orginially tried to use IndexOf or string.compare, but ran into issues with escape characters "\\".  
   
 ## HELPFUL LINKS  
-This is a good one with a nice example:  
+This is an excellent link with a nice example:  
 https://stackoverflow.com/questions/12117024/decimal-number-regular-expression-where-digit-after-decimal-is-optional  
   
 https://regex101.com/  

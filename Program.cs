@@ -12,9 +12,33 @@ namespace ConsoleEntryValidation
             string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
             Console.WriteLine("The Regex Pattern is: {0}\n", pattern);
             
-            //pattern += @"\.?";
+            List<string> list = new List<string>();
+            list.Add(@"\0");
+            list.Add("43");
+            list.Add("AAAaaa111000");
+            list.Add("4.33.4");
+            list.Add("4.3");
+            list.Add("AAaa4.3");
+            list.Add("AA.aa4.3");
+
             var regexItem = new Regex(pattern);
             bool findMatch = false;
+            int index = 0;
+
+            foreach (string item in list)
+            {
+                index++;
+                if (regexItem.IsMatch(item))
+                {
+                    findMatch = true;
+                }
+                Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
+            }
+
+            Console.WriteLine("\n\nOLD CODE BELOW:\n");
+
+            //pattern += @"\.?";
+            
             string teststring = @"\0";
             if (regexItem.IsMatch(teststring))
             {
