@@ -28,6 +28,7 @@ namespace ConsoleEntryValidation
             foreach (string item in list)
             {
                 index++;
+                findMatch = false;
                 if (regexItem.IsMatch(item))
                 {
                     findMatch = true;
