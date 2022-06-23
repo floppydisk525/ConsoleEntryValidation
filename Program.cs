@@ -8,94 +8,27 @@ namespace ConsoleEntryValidation
     internal class Program
     {
         static void Main(string[] args)
-        {
-            string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
-            Console.WriteLine("The Regex Pattern is: {0}\n", pattern);
-            
+        {            
             List<string> list = new List<string>();
             list.Add(@"\0");
             list.Add("43");
             list.Add("AAAaaa111000");
+            list.Add("AAAaaaZZZzzz");
             list.Add("4.33.4");
             list.Add("4.3");
             list.Add("AAaa4.3");
             list.Add("AA.aa4.3");
 
-            var regexItem = new Regex(pattern);
-            bool findMatch = false;
-            int index = 0;
-
-            foreach (string item in list)
-            {
-                index++;
-                findMatch = false;
-                if (regexItem.IsMatch(item))
-                {
-                    findMatch = true;
-                }
-                Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
-            }
-
-            Console.WriteLine("\n\nOLD CODE BELOW:\n");
-
-            //pattern += @"\.?";
-            
-            string teststring = @"\0";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("1. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            findMatch = false;
-            teststring = "43";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("2. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            findMatch = false;
-            teststring = "AAAaaa111000";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("3. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            //string pattern2 = @"^[a-zA-Z0-9]*\.?$"; // @"^\.?$";
-            findMatch = false;
-            //var regexItem = new Regex(pattern2);
-            teststring = "4.33.4";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("4. The string {0} isMatch is: {1}", teststring, findMatch);
-                        
-            findMatch = false;
-            teststring = "4.3";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("5. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            findMatch = false;
-            teststring = "AAaa4.3";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("6. The string {0} isMatch is: {1}", teststring, findMatch);
-
-            findMatch = false;
-            teststring = "AA.aa4.3";
-            if (regexItem.IsMatch(teststring))
-            {
-                findMatch = true;
-            }
-            Console.WriteLine("7. The string {0} isMatch is: {1}", teststring, findMatch);
+            string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
+            regexMatch(list, pattern);
+            pattern = @"^[a-zA-Z0-9]*$";
+            regexMatch(list, pattern);
+            pattern = @"^[a-zA-Z]*$";
+            regexMatch(list, pattern);
+            pattern = @"^[0-9]*$";
+            regexMatch(list, pattern);
+            pattern = @"^[0-9]*(\d*\.?\d)$";
+            regexMatch(list, pattern);
 
             Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
             Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
@@ -135,7 +68,30 @@ namespace ConsoleEntryValidation
 
             //Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));
+
+            void regexMatch(List<string> listOfStrings, string patternToTest)
+            {
+                var regexItem = new Regex(patternToTest);
+                Console.WriteLine("\n\nThe Regex Pattern is: {0}\n", patternToTest);
+
+                bool findMatch = false;
+                int index = 0;
+
+                foreach (string item in listOfStrings)
+                {
+                    index++;
+                    findMatch = false;
+                    if (regexItem.IsMatch(item))
+                    {
+                        findMatch = true;
+                    }
+                    Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
+                }
+            }
         }
+
+        
+
 
         /// <summary>
         /// Method <c>KeyValidate</c> allows keystrokes based on a pre-set group/range.
