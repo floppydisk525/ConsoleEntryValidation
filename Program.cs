@@ -20,26 +20,18 @@ namespace ConsoleEntryValidation
             list.Add("AA.aa4.3");
 
             string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
-            regexMatch(list, pattern);
+            ReferenceTopics.regexMatch(list, pattern);
             pattern = @"^[a-zA-Z0-9]*$";
-            regexMatch(list, pattern);
+            ReferenceTopics.regexMatch(list, pattern);
             pattern = @"^[a-zA-Z]*$";
-            regexMatch(list, pattern);
+            ReferenceTopics.regexMatch(list, pattern);
             pattern = @"^[0-9]*$";
-            regexMatch(list, pattern);
+            ReferenceTopics.regexMatch(list, pattern);
             pattern = @"^[0-9]*(\d*\.?\d)$";
-            regexMatch(list, pattern);
+            ReferenceTopics.regexMatch(list, pattern);
 
             //Reference Topics 
             ReferenceTopics.MSRegexExample();
-
-            ReferenceTopics.PrintChars("Hello");
-            Console.WriteLine();
-            ReferenceTopics.PrintChars(@"\0");
-            Console.WriteLine();
-            ReferenceTopics.PrintChars(@"\t");
-            Console.WriteLine();
-            ReferenceTopics.PrintChars(@"\");
 
             //Console.WriteLine("Enter Only Digits followed by ENTER:");            
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
@@ -55,34 +47,6 @@ namespace ConsoleEntryValidation
         }
 
         /// <summary>
-        /// regexMatch takes a list of strings and a string test pattern and uses
-        /// Regex to check if the strings in listOfStrings match the pattern.  
-        /// 
-        /// Also, it prints out the strings and true/false if a match.
-        /// </summary>
-        /// <param name="listOfStrings"></param>
-        /// <param name="patternToTest"></param>
-        static void regexMatch(List<string> listOfStrings, string patternToTest)
-        {
-            var regexItem = new Regex(patternToTest);
-            Console.WriteLine("\n\nThe Regex Pattern is: {0}\n", patternToTest);
-
-            bool findMatch = false;
-            int index = 0;
-
-            foreach (string item in listOfStrings)
-            {
-                index++;
-                findMatch = false;
-                if (regexItem.IsMatch(item))
-                {
-                    findMatch = true;
-                }
-                Console.WriteLine("{0}. The string {1} isMatch is: {2}", index, item, findMatch);
-            }
-        }
-
-        /// <summary>
         /// Method <c>KeyValidate</c> allows keystrokes based on a pre-set group/range.
         /// It does not limit number of keystroke entries and terminates with ENTER. 
         /// </summary>
@@ -91,7 +55,8 @@ namespace ConsoleEntryValidation
             switch (validateString)
             {
                 case "num":
-                    validateString = "0123456789";
+                    //validateString = "0123456789";
+                    validateString = @"^[0-9]*$";
                     break;
                 case "num&decimal":
                     validateString = "0123456789.";
