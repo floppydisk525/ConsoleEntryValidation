@@ -30,21 +30,22 @@ namespace ConsoleEntryValidation
             pattern = @"^[0-9]*(\d*\.?\d)$";
             regexMatch(list, pattern);
 
-            //MSRegexExample();
+            //Reference Topics 
+            ReferenceTopics.MSRegexExample();
 
-            //PrintChars("Hello");
-            //Console.WriteLine();
-            //PrintChars(@"\0");
-            //Console.WriteLine();
-            //PrintChars(@"\t");
-            //Console.WriteLine();
-            //PrintChars(@"\");
+            ReferenceTopics.PrintChars("Hello");
+            Console.WriteLine();
+            ReferenceTopics.PrintChars(@"\0");
+            Console.WriteLine();
+            ReferenceTopics.PrintChars(@"\t");
+            Console.WriteLine();
+            ReferenceTopics.PrintChars(@"\");
 
             //Console.WriteLine("Enter Only Digits followed by ENTER:");            
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
 
             //Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&period"));
+            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&decimal"));
 
             //Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
             //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
@@ -92,7 +93,7 @@ namespace ConsoleEntryValidation
                 case "num":
                     validateString = "0123456789";
                     break;
-                case "num&period":
+                case "num&decimal":
                     validateString = "0123456789.";
                     break;
                 case "alphaOnlyLowerCase":
@@ -180,43 +181,6 @@ namespace ConsoleEntryValidation
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, Console.CursorTop);
-        }
-
-        static void PrintChars(string s)
-        {
-            Console.WriteLine($"\"{s}\".Length = {s.Length}");
-            for (int i = 0; i < s.Length; i++)
-            {
-                Console.WriteLine($"s[{i}] = '{s[i]}' ('\\u{(int)s[i]:x4}')");
-            }
-            Console.WriteLine();
-        }
-
-        /// <summary>
-        /// Method NOT used in code, but left for reference.
-        /// Used to show a Microsoft example from docs.microsoft.com...  etc.
-        /// </summary>
-        static void MSRegexExample()
-        {
-            Console.WriteLine("\nThe following EXAMPLE regex string is from a microsoft example located here:");
-            Console.WriteLine("https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0\n");
-            NumberFormatInfo nfi = NumberFormatInfo.CurrentInfo;
-            
-            //pattern = @""
-            string pattern = @"^\s*[";
-            // Get the positive and negative sign symbols.
-            pattern += Regex.Escape(nfi.PositiveSign + nfi.NegativeSign) + @"]?\s?";
-            // Get the currency symbol.
-            pattern += Regex.Escape(nfi.CurrencySymbol) + @"?\s?";
-            // Add integral digits to the pattern.
-            pattern += @"(\d*";
-            // Add the decimal separator.
-            pattern += Regex.Escape(nfi.CurrencyDecimalSeparator) + "?";
-            // Add the fractional digits.
-            pattern += @"\d{";
-            // Determine the number of fractional digits in currency values.
-            pattern += nfi.CurrencyDecimalDigits.ToString() + "}?){1}$";
-            Console.WriteLine(pattern);
         }
     }
 }
