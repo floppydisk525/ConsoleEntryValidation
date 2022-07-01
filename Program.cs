@@ -8,9 +8,24 @@ namespace ConsoleEntryValidation
     internal class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            Console.WriteLine("Enter Only Digits followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
+
+            Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&decimal"));
+
+            Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
+
+            Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
+            Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate(@"^[01234]*$"));
+
+            //Reference Topics 
+            
             List<string> list = new List<string>();
             list.Add(@"\0");
+            list.Add(@"\b");
             list.Add("43");
             list.Add("AAAaaa111000");
             list.Add("AAAaaaZZZzzz");
@@ -18,6 +33,7 @@ namespace ConsoleEntryValidation
             list.Add("4.3");
             list.Add("AAaa4.3");
             list.Add("AA.aa4.3");
+            list.Add(".");
 
             string pattern = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
             ReferenceTopics.regexMatch(list, pattern);
@@ -29,21 +45,12 @@ namespace ConsoleEntryValidation
             ReferenceTopics.regexMatch(list, pattern);
             pattern = @"^[0-9]*(\d*\.?\d)$";
             ReferenceTopics.regexMatch(list, pattern);
+            pattern = @"[\b]";  //not sure how to find this w/ regex, use console.key instead.
+            ReferenceTopics.regexMatch(list, pattern);
 
-            //Reference Topics 
+            /*
             ReferenceTopics.MSRegexExample();
-
-            //Console.WriteLine("Enter Only Digits followed by ENTER:");            
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num"));
-
-            //Console.WriteLine("Enter Only Digits & a Decimal followed by ENTER:");
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("num&decimal"));
-
-            //Console.WriteLine("Enter Only Alpha Characters followed by ENTER:");
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("alphaOnlyNoNum"));
-
-            //Console.WriteLine("Enter Only integers 0 thru 4 followed by ENTER:");
-            //Console.WriteLine("\nThe Digits entered are: {0}\n", KeyValidate("01234"));            
+            */
         }
 
         /// <summary>
@@ -59,16 +66,25 @@ namespace ConsoleEntryValidation
                     validateString = @"^[0-9]*$";
                     break;
                 case "num&decimal":
-                    validateString = "0123456789.";
+                    //validateString = "0123456789.";
+                    //validateString = @"^[0-9]*(\d*\.?\d)$";
+                    validateString = @"^[+-]?((\d+(\.\d*)?)|(\.\d+))$";
                     break;
                 case "alphaOnlyLowerCase":
-                    validateString = "qwertyuiopasdfghjklzxcvbnm";
+                    //validateString = "qwertyuiopasdfghjklzxcvbnm";
+                    validateString = @"^[a-z]*$";
                     break;
                 case "alphaOnlyUpperCase":
-                    validateString = "QWERTYUIOPASDFGHJKLZXCVBNM";
+                    //validateString = "QWERTYUIOPASDFGHJKLZXCVBNM";
+                    validateString = @"^[A-Z]*$";
                     break;
                 case "alphaOnlyNoNum":
-                    validateString = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+                    //validateString = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+                    validateString = @"^[a-zA-Z]*$";
+                    break;
+                case "alphaNum":
+                    validateString = @"^[a-zA-Z0-9]*(\d*\.?\d)$";
+                    //validateString = @"^[a-zA-Z0-9]*(\.?\)$";                    
                     break;
                 default:
                     //don't do anything with validateString
@@ -78,23 +94,14 @@ namespace ConsoleEntryValidation
             string consoleInput = "";
             ConsoleKeyInfo cki;
             string? keyInput = "";
+            var regexItem = new Regex(validateString);
+            //bool findMatch = false;
 
             do
             {
                 cki = Console.ReadKey(true);
                 keyInput = cki.KeyChar.ToString();
                 string keyInputLiteral = @cki.KeyChar.@ToString();
-
-                //try regex stuff here.
-                string pattern = @"^[a-zA-Z0-9\.?]*$";
-                //pattern += @"\.?";
-                var regexItem = new Regex(pattern);
-                bool findMatch = false;
-                if (regexItem.IsMatch(keyInputLiteral)) 
-                { 
-                    findMatch = true;                     
-                }
-                Console.WriteLine("findMatch character is: {0}", findMatch);
 
                 if (cki.Key == ConsoleKey.Backspace)
                 {
@@ -111,25 +118,7 @@ namespace ConsoleEntryValidation
                 //need to keep backspace from reaching this as it add's \b to it, which is bunk.
                 else if(keyInput != null)
                 {
-                    int lengthKeyInput = @keyInput.Length;
-                    int lengthKeyInputLiteral = @keyInputLiteral.Length;
-                    string cleaned = keyInput.Trim();
-                    int position = validateString.IndexOf(@keyInput);
-                    int positiontest = keyInput.IndexOf(validateString);
-                    string backslash = @"\";                    
-                    int posBackSlash = @backslash.IndexOf(@keyInput);
-                    int stringcompare = string.Compare(keyInput, backslash);
-                    //int posBackSlash = @keyInput.IndexOf(@backslash);
-
-                    bool findMatchConsoleInput = false;
-                    if (regexItem.IsMatch(keyInputLiteral))
-                    {
-                        findMatchConsoleInput = true;
-                    }
-                    Console.WriteLine("findMatch character is: {0}", findMatchConsoleInput);
-
-
-                    if (position != -1 && posBackSlash == -1) 
+                    if (regexItem.IsMatch(keyInputLiteral)) 
                     { 
                         consoleInput += keyInput;
                         Console.Write(keyInput);

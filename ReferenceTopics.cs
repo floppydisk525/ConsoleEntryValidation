@@ -95,5 +95,68 @@ namespace ConsoleEntryValidation
             }
             Console.WriteLine();
         }
+
+        //delete dowhileloopcode once regex is implemented and working.  it's stricktly backup 7/1/22
+        //   at 1:45pm.
+        static void dowhileloopcode()
+        {
+            //do
+            //{
+            //    cki = Console.ReadKey(true);
+            //    keyInput = cki.KeyChar.ToString();
+            //    string keyInputLiteral = @cki.KeyChar.@ToString();
+
+            //    //try regex stuff here.
+            //    string pattern = @"^[a-zA-Z0-9\.?]*$";
+            //    //pattern += @"\.?";
+            //    var regexItem = new Regex(pattern);
+            //    bool findMatch = false;
+            //    if (regexItem.IsMatch(keyInputLiteral))
+            //    {
+            //        findMatch = true;
+            //    }
+            //    Console.WriteLine("findMatch character is: {0}", findMatch);
+
+            //    if (cki.Key == ConsoleKey.Backspace)
+            //    {
+            //        //do stuff here
+            //        if (consoleInput != "")
+            //        {
+            //            consoleInput = consoleInput.Remove(consoleInput.Length - 1, 1);
+            //            //clear console LINE
+            //            ClearLastLine();
+            //            //write new variable console.write(consoleInput);
+            //            Console.Write(consoleInput);
+            //        }
+            //    }
+            //    //need to keep backspace from reaching this as it add's \b to it, which is bunk.
+            //    else if (keyInput != null)
+            //    {
+            //        int lengthKeyInput = @keyInput.Length;
+            //        int lengthKeyInputLiteral = @keyInputLiteral.Length;
+            //        string cleaned = keyInput.Trim();
+            //        int position = validateString.IndexOf(@keyInput);
+            //        int positiontest = keyInput.IndexOf(validateString);
+            //        string backslash = @"\";
+            //        int posBackSlash = @backslash.IndexOf(@keyInput);
+            //        int stringcompare = string.Compare(keyInput, backslash);
+            //        //int posBackSlash = @keyInput.IndexOf(@backslash);
+
+            //        bool findMatchConsoleInput = false;
+            //        if (regexItem.IsMatch(keyInputLiteral))
+            //        {
+            //            findMatchConsoleInput = true;
+            //        }
+            //        Console.WriteLine("findMatch character is: {0}", findMatchConsoleInput);
+
+
+            //        if (position != -1 && posBackSlash == -1)
+            //        {
+            //            consoleInput += keyInput;
+            //            Console.Write(keyInput);
+            //        }
+            //    }
+            //} while (cki.Key != ConsoleKey.Enter);
+        }
     }
 }
