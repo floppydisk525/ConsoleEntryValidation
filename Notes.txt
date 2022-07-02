@@ -35,6 +35,7 @@ https://stackoverflow.com/questions/4503542/check-for-special-characters-in-a-st
 
 GOOD REGEX EXAMPLE
 https://stackoverflow.com/questions/12117024/decimal-number-regular-expression-where-digit-after-decimal-is-optional
+Note - got this /^\d*\.?\d*$/ pattern from above - used it!  Very good.
 
 from discord thecsharpacademy, they shared:
 www.regex101.com   
