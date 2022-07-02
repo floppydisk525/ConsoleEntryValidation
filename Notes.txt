@@ -32,9 +32,13 @@ https://stackoverflow.com/questions/4503542/check-for-special-characters-in-a-st
 	This example has the screen shot in RefMat folder.  
     var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
     if(regexItem.IsMatch(YOUR_STRING)){..}
+
 GOOD REGEX EXAMPLE
 https://stackoverflow.com/questions/12117024/decimal-number-regular-expression-where-digit-after-decimal-is-optional
 
+from discord thecsharpacademy, they shared:
+www.regex101.com   
+regex101.com has a great visualizer to make your regex strings.  
 
 
 \.?	Match zero or one decimal point symbol.
